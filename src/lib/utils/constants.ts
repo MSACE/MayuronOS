@@ -96,3 +96,39 @@ export const MOOD_THEMES = {
     accentColor: "#4f46e5",
   },
 } as const;
+
+// ─── 100/100 Master Constants ──────────────────────────
+
+/** VoiceLink Configuration */
+export const VOICE_CONFIG = {
+  sampleRate: 24000,
+  maxSilenceDurationMs: 1200,
+  targetLatencyMs: 400,
+  defaultVoice: "en-US-Neural2-F",
+} as const;
+
+/** Self-Healing Guardrails & Evals */
+export const EVAL_CONFIG = {
+  maxAutoRepairRetries: 2,
+  schemaValidationTimeoutMs: 300,
+  fallbackComponent: "explanation" as const,
+  telemetrySampleRate: 1.0, // 100% of AI calls evaluated
+} as const;
+
+/** WebXR Spatial Knowledge Computing */
+export const SPATIAL_CONFIG = {
+  defaultFov: 75,
+  nearPlane: 0.1,
+  farPlane: 1000,
+  orbitSpeed: 0.5,
+  particleCount: 150,
+  enableHaptics: true,
+} as const;
+
+/** Cryptographic Proof of Mastery */
+export const PROOF_CONFIG = {
+  issuerDomain: "https://mayuron.os",
+  signatureAlgorithm: "SHA-256",
+  minMasteryRequired: 85,
+  minChallengesRequired: 3,
+} as const;

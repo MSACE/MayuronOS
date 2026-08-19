@@ -27,6 +27,10 @@
 | [feature-model-router.md](./features/feature-model-router.md) | Model Router | How to pick the right AI model for each task |
 | [feature-ghost-peer.md](./features/feature-ghost-peer.md) | Ghost Peer Agent | How the simulated study partner works |
 | [feature-rag.md](./features/feature-rag.md) | RAG (Retrieval Augmented Generation) | How AI uses your data to give better answers |
+| [feature-voice-link.md](./features/feature-voice-link.md) | Real-Time VoiceLink | Sub-400ms conversational voice streaming with Ghost Peer |
+| [feature-self-healing-ui.md](./features/feature-self-healing-ui.md) | Self-Healing Generative UI | Zero-error guardrails & automated schema repair |
+| [feature-spatial-webxr.md](./features/feature-spatial-webxr.md) | WebXR Spatial Computing | Apple Vision Pro & Meta Quest 3D immersion |
+| [feature-proof-of-mastery.md](./features/feature-proof-of-mastery.md) | Proof of Mastery | Cryptographically signed, verifiable skill receipts |
 
 ---
 

@@ -123,3 +123,57 @@ export interface AdaptiveTheme {
   fontSize: "small" | "medium" | "large";
   animationSpeed: "slow" | "normal" | "fast";
 }
+
+// ─── 100/100 Master Upgrades ───────────────────────────
+
+/** 1. VoiceLink — Real-Time Conversational Audio */
+export interface VoiceSessionState {
+  isActive: boolean;
+  isSpeaking: boolean;
+  isListening: boolean;
+  audioLatencyMs: number;
+  transcription: string;
+}
+
+/** 2. Self-Healing Generative UI Guardrails & Evals */
+export interface SelfHealingTrace {
+  id: string;
+  originalPayload: Record<string, unknown>;
+  validationError: string | null;
+  repairedPayload: Record<string, unknown> | null;
+  repairLatencyMs: number;
+  status: "valid" | "auto_repaired" | "fallback_rendered";
+}
+
+/** 3. WebXR Spatial Knowledge Computing */
+export interface SpatialGraphConfig {
+  enableVR: boolean;
+  enableAR: boolean;
+  handTracking: boolean;
+  spatialAudio: boolean;
+  nodeScale: number;
+}
+
+/** 4. Local-First & Offline Sync */
+export interface OfflineSyncState {
+  isOnline: boolean;
+  pendingSyncCount: number;
+  lastSyncedAt: Date | null;
+  syncStatus: "idle" | "syncing" | "error";
+}
+
+/** 5. Verifiable Proof of Mastery (Skill Receipt) */
+export interface ProofOfMasteryReceipt {
+  receiptId: string;
+  userId: string;
+  userName: string;
+  topicId: string;
+  topicTitle: string;
+  masteryScore: number; // 0-100
+  timeSpentSeconds: number;
+  challengesCompleted: number;
+  accuracyRate: number;
+  issuedAt: Date;
+  cryptographicSignature: string; // SHA-256 hash / signature
+  verificationUrl: string;
+}
