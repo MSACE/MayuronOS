@@ -27,24 +27,31 @@
 
 :root {
   color-scheme: dark;
-  --background: #0f1013;
+  --background: #08090c;
   --foreground: #f4f4f5;
-  --card: #15171c;
+  --card: #111318;
   --card-foreground: #f4f4f5;
-  --popover: #15171c;
+  --popover: #111318;
   --popover-foreground: #f4f4f5;
   --primary: #ffffff;
-  --primary-foreground: #0f1013;
-  --secondary: #1a1c22;
+  --primary-foreground: #08090c;
+  --secondary: #14161d;
   --secondary-foreground: #f4f4f5;
-  --muted: #242731;
-  --muted-foreground: #8e94a4;
-  --accent: #242731;
+  --muted: #1e222d;
+  --muted-foreground: #8e95a5;
+  --accent: #1e222d;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
-  --border: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.09);
   --input: rgba(255, 255, 255, 0.12);
-  --ring: #ffffff;
+  --ring: #00c3ff;
+
+  /* Supercar Chromatic Design Tokens */
+  --lambo-cyan: #00c3ff;     /* Blu Cepheus / Porsche Miami Blue */
+  --lambo-lime: #49f112;     /* Verde Mantis */
+  --lambo-violet: #a855f7;   /* Viola Pasifae */
+  --ferrari-yellow: #ffe600; /* Giallo Modena */
+  --mclaren-orange: #ff7300; /* Papaya Spark */
 }
 
 body {
@@ -54,8 +61,24 @@ body {
   overflow-x: hidden;
 }
 
+/* Supercar Ambient Glows */
+.supercar-glow-cyan {
+  box-shadow: 0 0 35px -8px rgba(0, 195, 255, 0.25);
+}
+
+.supercar-glow-lime {
+  box-shadow: 0 0 35px -8px rgba(73, 241, 18, 0.25);
+}
+
+.supercar-glow-violet {
+  box-shadow: 0 0 35px -8px rgba(168, 85, 247, 0.25);
+}
+
+/* Glassmorphism Panel with Supercar Horizon Lighting */
 .glass-panel {
-  background: linear-gradient(145deg, #13151b, #0f1014);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  background: linear-gradient(145deg, rgba(17, 21, 30, 0.85), rgba(11, 13, 18, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
