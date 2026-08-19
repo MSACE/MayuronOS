@@ -1,417 +1,431 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import Link from "next/link";
-import { APP_NAME, APP_AUTHOR, APP_TAGLINE, MOOD_THEMES } from "@/lib/utils/constants";
-import { MoodState } from "@/types";
+import { useState } from 'react'
+import Link from 'next/link'
+import {
+  ArrowUpRight,
+  Check,
+  Command,
+  Layers3,
+  Play,
+  Sparkles,
+  Cpu,
+  Brain,
+  Eye,
+  Activity,
+  Flame,
+  Globe2,
+} from 'lucide-react'
+import { APP_NAME, APP_AUTHOR, APP_TAGLINE, MOOD_THEMES } from '@/lib/utils/constants'
+import { MoodState } from '@/types'
 
-export default function LandingPage() {
-  const [activeMood, setActiveMood] = useState<MoodState>("focused");
-  const [activeTab, setActiveTab] = useState<"genui" | "telemetry" | "peer" | "graph">("genui");
-  const [quizAnswer, setQuizAnswer] = useState<number | null>(null);
+const modes = [
+  {
+    label: 'Generative Synthesis',
+    title: 'Turn thought into living, interactive interfaces.',
+    body: 'Describe what you want to master. MayuronOS synthesizes custom code playgrounds, real-time quizzes, and visual diagrams on the fly—no static pages.',
+  },
+  {
+    label: 'Affective Telemetry',
+    title: 'An interface that perceives human friction.',
+    body: 'Sub-second behavioral telemetry detects hesitation, error rate, and cognitive fatigue, dynamically softening animations, altering themes, and offering guidance.',
+  },
+  {
+    label: 'Cognitive Matrix',
+    title: 'Every concept connected in 3D spatial space.',
+    body: 'Fly through your living knowledge constellation. Discover hidden gaps, track mastery progression, and step inside with WebXR on spatial headsets.',
+  },
+]
 
-  const currentTheme = MOOD_THEMES[activeMood];
+export default function Page() {
+  const [activeMode, setActiveMode] = useState(0)
+  const [activeMood, setActiveMood] = useState<MoodState>('focused')
+  const [quizAnswer, setQuizAnswer] = useState<number | null>(null)
+
+  const currentTheme = MOOD_THEMES[activeMood]
 
   return (
-    <div className="min-h-screen bg-[#030712] text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-black">
-      {/* Background ambient radial gradients & grid */}
+    <main className="min-h-screen overflow-hidden bg-background text-foreground selection:bg-cyan-500 selection:text-black">
+      {/* Subtle ambient grid and chromatic glow background */}
       <div className="fixed inset-0 bg-grid-pattern opacity-60 pointer-events-none" />
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-cyan-500/10 via-indigo-500/5 to-transparent blur-3xl pointer-events-none -z-10" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-gradient-to-b from-cyan-500/12 via-indigo-500/6 to-transparent blur-3xl pointer-events-none -z-10" />
 
-      {/* ─── Top Navbar ────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-50 border-b border-slate-800/80 bg-[#030712]/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-500 p-[1px] shadow-lg shadow-cyan-500/20">
-              <div className="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center font-mono font-bold text-cyan-400 text-sm">
-                🦚
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-semibold tracking-tight text-white">{APP_NAME}</span>
-                <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded-full bg-cyan-950 border border-cyan-800/60 text-cyan-400">
+      {/* ─── Sticky Header ────────────────────────────────────────────── */}
+      <header className="sticky top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+          <Link href="/" className="flex items-center gap-2.5 text-sm font-semibold tracking-tight group" aria-label="MayuronOS Home">
+            <span className="grid size-8 place-items-center rounded-lg bg-primary text-primary-foreground shadow-lg shadow-cyan-500/25 transition-transform group-hover:scale-105">
+              <Command className="size-4 text-slate-950 stroke-[2.5]" />
+            </span>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1.5">
+                <span className="font-bold tracking-tight text-white">{APP_NAME}</span>
+                <span className="text-[10px] font-mono uppercase px-1.5 py-0.2 rounded-full bg-primary/10 border border-primary/30 text-primary">
                   v0.1.0
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 hidden sm:block">{APP_TAGLINE}</p>
+              <span className="text-[10px] text-muted-foreground hidden sm:block">{APP_TAGLINE}</span>
             </div>
-          </div>
+          </Link>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-300">
-            <a href="#features" className="hover:text-white transition-colors">Architecture</a>
-            <a href="#interactive-preview" className="hover:text-white transition-colors">Live Simulation</a>
-            <a href="#curriculum" className="hover:text-white transition-colors">Study Modules</a>
-            <a href="#creator" className="hover:text-white transition-colors">Creator</a>
+          <nav className="hidden items-center gap-8 text-xs font-medium text-muted-foreground md:flex">
+            <a href="#system" className="transition-colors hover:text-foreground">System Architecture</a>
+            <a href="#interactive-preview" className="transition-colors hover:text-foreground">Live Telemetry</a>
+            <a href="#principles" className="transition-colors hover:text-foreground">Core Pillars</a>
+            <a href="#creator" className="transition-colors hover:text-foreground">Architect</a>
           </nav>
 
           <div className="flex items-center gap-3">
             <Link
               href="/learn"
-              className="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-medium text-xs sm:text-sm transition-all shadow-lg shadow-cyan-500/20 active:scale-95"
+              className="flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-lg shadow-cyan-500/20 transition-all hover:bg-cyan-300 hover:shadow-cyan-500/30 active:scale-95"
             >
-              Launch Studio →
+              <span>Launch Studio</span>
+              <ArrowUpRight className="size-3.5" />
             </Link>
           </div>
         </div>
       </header>
 
-      {/* ─── Hero Section ──────────────────────────────────────────── */}
-      <main className="flex-1 max-w-7xl mx-auto px-6 pt-16 pb-24 w-full flex flex-col items-center">
-        {/* Release Pill Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-800 bg-slate-900/90 text-xs font-mono text-slate-300 mb-8 backdrop-blur-md glow-pill">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Next-Gen HCI System</span>
-          <span className="text-slate-600">|</span>
-          <span className="text-cyan-400">100/100 Cognitive Architecture</span>
-        </div>
+      {/* ─── Hero Section ────────────────────────────────────────────── */}
+      <section id="top" className="mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-10 lg:pb-28 lg:pt-20">
+        <div className="max-w-xl">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur-md">
+            <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>A New Cognitive Operating Layer</span>
+            <span className="text-border">|</span>
+            <span className="font-mono text-muted-foreground">100/100 Spec</span>
+          </div>
 
-        {/* Hero Headline */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-center max-w-4xl text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 leading-[1.1] mb-6">
-          The Cognitive OS That <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400">
-            Generates UI In Real-Time
-          </span>
-        </h1>
+          <h1 className="text-balance text-5xl font-bold tracking-[-0.055em] sm:text-6xl lg:text-7xl leading-[1.08] text-white">
+            Make space for <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-purple-400">
+              better thinking.
+            </span>
+          </h1>
 
-        <p className="text-base sm:text-lg text-slate-400 text-center max-w-2xl leading-relaxed mb-10">
-          Static applications are outdated. {APP_NAME} composes interactive React components
-          on the fly, senses cognitive friction via behavioral telemetry, and pairs you with an
-          adaptive Ghost Peer for true 1-on-1 mastery.
-        </p>
+          <p className="mt-6 max-w-lg text-pretty text-base leading-7 text-muted-foreground">
+            {APP_NAME} is an adaptive cognitive workspace for consequential mastery. It generates
+            interactive UI in real time, senses emotional friction via behavioral telemetry, and pairs
+            you with a Ghost Peer. Less interface. More signal.
+          </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-16">
-          <Link
-            href="/learn"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white hover:bg-slate-200 text-slate-950 font-semibold text-sm transition-all shadow-xl shadow-white/10 active:scale-95 text-center flex items-center justify-center gap-2"
-          >
-            <span>Start Interactive Session</span>
-            <span className="font-mono">→</span>
-          </Link>
-          <a
-            href="#interactive-preview"
-            className="w-full sm:w-auto px-6 py-3.5 rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-900/60 hover:bg-slate-900 text-slate-300 font-medium text-sm transition-all text-center flex items-center justify-center gap-2"
-          >
-            <span>Explore Live Sandbox</span>
-            <span className="text-xs font-mono text-cyan-400">⚡</span>
-          </a>
-        </div>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Link
+              href="/learn"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-xl shadow-cyan-500/25 transition-all hover:bg-cyan-300 hover:shadow-cyan-500/40 hover:-translate-y-0.5 active:scale-95"
+            >
+              <span>Explore {APP_NAME}</span>
+              <ArrowUpRight className="size-4 text-slate-950" />
+            </Link>
+            <a
+              href="#interactive-preview"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-5 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+            >
+              <span>Live Simulation</span>
+              <Sparkles className="size-3.5 text-primary" />
+            </a>
+          </div>
 
-        {/* Tech Stack Metrics Strip */}
-        <div className="w-full max-w-4xl grid grid-cols-2 sm:grid-cols-4 gap-4 mb-20">
-          {[
-            { label: "STREAMING LATENCY", value: "< 200ms", sub: "Groq LPU Engine" },
-            { label: "MEMORY CONTEXT", value: "1,000,000", sub: "Gemini 2.5 Flash" },
-            { label: "VECTOR ENGINE", value: "pgvector", sub: "ACID Relational Sync" },
-            { label: "FRONTEND SPEC", value: "Next.js 15", sub: "React 19 Server Comp" },
-          ].map((stat, i) => (
-            <div key={i} className="glass-card p-4 rounded-xl flex flex-col items-center text-center">
-              <span className="text-[10px] font-mono text-slate-400 tracking-wider mb-1">{stat.label}</span>
-              <span className="text-xl font-bold text-white tracking-tight">{stat.value}</span>
-              <span className="text-[11px] text-cyan-400/80 font-mono mt-0.5">{stat.sub}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* ─── Interactive Live Preview Studio ─────────────────────────── */}
-        <section id="interactive-preview" className="w-full max-w-5xl mb-24">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-4">
+          <div className="mt-10 grid grid-cols-3 gap-4 border-t border-border pt-6 text-xs font-mono">
             <div>
-              <span className="text-xs font-mono text-cyan-400 tracking-wider uppercase mb-1 block">
-                ● Live Interactive Engine
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                Experience the 4 Cognitive Pillars
-              </h2>
+              <span className="text-muted-foreground block text-[10px] uppercase">Telemetry</span>
+              <span className="text-sm font-bold text-white">&lt; 200ms</span>
+            </div>
+            <div>
+              <span className="text-muted-foreground block text-[10px] uppercase">Context Depth</span>
+              <span className="text-sm font-bold text-white">1M Tokens</span>
+            </div>
+            <div>
+              <span className="text-muted-foreground block text-[10px] uppercase">Architecture</span>
+              <span className="text-sm font-bold text-white">Next.js 15 RSC</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ─── Hero Glass Panel Live Canvas ─────────────────────────── */}
+        <div className="glass-panel relative min-h-[420px] overflow-hidden rounded-2xl p-5 sm:min-h-[500px] lg:min-h-[560px]">
+          <div className="flex items-center justify-between border-b border-border pb-4 text-[10px] font-mono uppercase tracking-[0.16em] text-muted-foreground">
+            <span className="flex items-center gap-1.5">
+              <span className="size-2 rounded-full bg-emerald-400 animate-ping" />
+              {APP_NAME} / cognitive runtime
+            </span>
+            <span className="text-primary">Live streamUI()</span>
+          </div>
+
+          <div className="absolute inset-x-6 bottom-6 top-20 rounded-xl border border-border bg-card/90 shadow-2xl p-5 flex flex-col justify-between overflow-hidden">
+            {/* Top Bar of Workspace */}
+            <div className="flex items-center justify-between border-b border-border pb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-white">Dynamic Session Synthesis</span>
+                <span className="rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-medium text-primary">
+                  In synthesis
+                </span>
+              </div>
+              <span className="text-[11px] font-mono text-muted-foreground">Mastery: 88%</span>
             </div>
 
-            {/* Pillar Selector Tabs */}
-            <div className="flex items-center p-1 bg-slate-900 border border-slate-800 rounded-xl">
-              {[
-                { id: "genui", label: "🎨 Generative UI" },
-                { id: "telemetry", label: "🎭 Mood Engine" },
-                { id: "peer", label: "👻 Ghost Peer" },
-                { id: "graph", label: "🌌 3D Matrix" },
-              ].map((tab) => (
+            {/* Middle Section: Code + Signal Radar */}
+            <div className="grid gap-4 py-4 sm:grid-cols-[1.1fr_0.9fr] flex-1">
+              <div className="space-y-2.5">
+                <div className="rounded-lg bg-slate-950/80 border border-border p-3 font-mono text-[11px] text-slate-300 space-y-1">
+                  <div className="text-purple-400 font-semibold">// Live Generated Sandbox</div>
+                  <div className="text-cyan-300">const taskQueue = new MicrotaskQueue();</div>
+                  <div className="text-emerald-400">taskQueue.dispatch(async () =&gt; streamUI());</div>
+                </div>
+
+                <div className="rounded-lg border border-border p-3 bg-secondary/40">
+                  <div className="mb-1.5 flex items-center gap-2 text-xs font-medium text-white">
+                    <Sparkles className="size-3.5 text-primary" /> Active Working Thesis
+                  </div>
+                  <p className="text-xs leading-5 text-muted-foreground">
+                    The highest retention occurs when UI components self-generate at the moment of cognitive need.
+                  </p>
+                </div>
+              </div>
+
+              {/* Signal Radar Map */}
+              <div className="rounded-lg bg-secondary/60 border border-border p-3.5 flex flex-col justify-between">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-muted-foreground font-mono text-[10px] uppercase">Cognitive Radar</span>
+                  <Layers3 className="size-4 text-primary" />
+                </div>
+                <div className="flex h-28 items-center justify-center my-2">
+                  <div className="relative size-24 rounded-full border border-primary/30 flex items-center justify-center animate-pulse">
+                    <div className="size-12 rounded-full bg-accent flex items-center justify-center">
+                      <span className="size-3 rounded-full bg-primary" />
+                    </div>
+                    <span className="absolute -right-3 top-1 text-[8px] font-mono text-cyan-300">context</span>
+                    <span className="absolute -left-3 bottom-1 text-[8px] font-mono text-purple-300">intent</span>
+                  </div>
+                </div>
+                <div className="flex justify-between text-[9px] font-mono text-muted-foreground border-t border-border pt-1.5">
+                  <span>State: Focused</span>
+                  <span className="text-emerald-400">Optimal (420ms)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Status bar */}
+            <div className="flex items-center justify-between border-t border-border pt-3 text-[11px] text-muted-foreground">
+              <span className="flex items-center gap-1.5">
+                <span className="size-1.5 rounded-full bg-primary" />
+                Agent Swarm: Active
+              </span>
+              <span className="font-mono text-xs text-white">Gemini 2.5 + Groq LPU</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── System Modes Section (from v0) ────────────────────────── */}
+      <section id="system" className="border-y border-border bg-secondary/40">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[0.42fr_1fr] lg:px-10 lg:py-28">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              One system, many ways in
+            </p>
+            <h2 className="mt-5 text-3xl font-bold tracking-[-0.04em] sm:text-4xl text-white">
+              The work stays human. <br />
+              The surface gets smarter.
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground max-w-sm">
+              Instead of static screens, MayuronOS continuously adapts its surface depending on whether you are synthesizing new knowledge or analyzing gaps.
+            </p>
+          </div>
+
+          <div>
+            <div className="flex flex-wrap gap-2 border-b border-border pb-4">
+              {modes.map((mode, index) => (
                 <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                    activeTab === tab.id
-                      ? "bg-cyan-500 text-slate-950 font-semibold shadow-md"
-                      : "text-slate-400 hover:text-white"
+                  key={mode.label}
+                  onClick={() => setActiveMode(index)}
+                  className={`rounded-full px-4 py-2 text-xs sm:text-sm font-medium transition-all ${
+                    activeMode === index
+                      ? 'bg-primary text-primary-foreground font-semibold shadow-md'
+                      : 'text-muted-foreground hover:bg-card hover:text-foreground'
                   }`}
                 >
-                  {tab.label}
+                  {mode.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="grid gap-8 pt-8 sm:grid-cols-[1fr_auto] sm:items-end">
+              <div>
+                <h3 className="max-w-lg text-2xl sm:text-3xl font-bold tracking-[-0.04em] text-white">
+                  {modes[activeMode].title}
+                </h3>
+                <p className="mt-4 max-w-lg text-sm leading-7 text-muted-foreground">
+                  {modes[activeMode].body}
+                </p>
+              </div>
+              <div className="flex size-16 sm:size-20 items-center justify-center rounded-2xl border border-border bg-card shadow-xl">
+                <Play className="ml-1 size-5 fill-primary text-primary" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Interactive Telemetry & Supercar Palette Studio ────────── */}
+      <section id="interactive-preview" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+            Supercar Chromatic Telemetry
+          </p>
+          <h2 className="mt-3 text-3xl font-bold tracking-[-0.04em] sm:text-4xl text-white">
+            Real-Time Cognitive Morphing
+          </h2>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Click an affective state below to watch how the interface tokens and pedagogical pacing morph dynamically:
+          </p>
+        </div>
+
+        {/* Supercar Palette Switcher */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto mb-8">
+          {(['focused', 'confident', 'confused', 'frustrated'] as MoodState[]).map((mood) => {
+            const theme = MOOD_THEMES[mood]
+            return (
+              <button
+                key={mood}
+                onClick={() => setActiveMood(mood)}
+                className={`p-3.5 rounded-xl border text-center transition-all ${
+                  activeMood === mood
+                    ? 'ring-2 ring-primary font-bold text-white shadow-xl'
+                    : 'bg-card border-border text-muted-foreground hover:text-foreground'
+                }`}
+                style={{
+                  backgroundColor: activeMood === mood ? `${theme.primaryColor}18` : undefined,
+                  borderColor: activeMood === mood ? theme.primaryColor : undefined,
+                }}
+              >
+                <div className="text-xs font-mono uppercase tracking-wider">{mood}</div>
+                <div className="text-[10px] font-sans opacity-85 mt-1" style={{ color: theme.primaryColor }}>
+                  {theme.name}
+                </div>
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Dynamic Simulated Telemetry Card */}
+        <div
+          className="max-w-3xl mx-auto glass-panel p-6 sm:p-8 rounded-2xl transition-all duration-500"
+          style={{ borderColor: currentTheme.primaryColor }}
+        >
+          <div className="flex items-center justify-between border-b border-border pb-4 mb-4">
+            <span className="text-xs font-mono font-bold" style={{ color: currentTheme.primaryColor }}>
+              ● Active State: {currentTheme.name}
+            </span>
+            <span className="text-[11px] font-mono text-muted-foreground">
+              Latency: {activeMood === 'frustrated' ? '140ms (Rapid Friction)' : '420ms (Optimal)'}
+            </span>
+          </div>
+
+          {activeMood === 'frustrated' && (
+            <div className="p-3.5 bg-purple-950/60 border border-purple-800/60 rounded-xl text-xs text-purple-200 mb-4 animate-in fade-in">
+              💜 <strong>Viola Pasifae Recovery:</strong> Complex steps collapsed into isolated hint. Animations slowed by 60%.
+            </div>
+          )}
+
+          {activeMood === 'confident' && (
+            <div className="p-3.5 bg-emerald-950/60 border border-emerald-800/60 rounded-xl text-xs text-emerald-200 mb-4 animate-in fade-in">
+              ⚡ <strong>Verde Mantis Acceleration:</strong> Advanced edge cases unlocked. Timed challenges active!
+            </div>
+          )}
+
+          <div className="bg-slate-950/90 border border-border rounded-xl p-4 font-mono text-xs text-slate-300">
+            <div className="text-muted-foreground mb-2">// Interactive Quiz Generation Check</div>
+            <div className="text-white mb-3">Which loop construct guarantees execution order for async callbacks?</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {[
+                { id: 0, text: 'Array.prototype.forEach()', correct: false },
+                { id: 1, text: 'for...of loop', correct: true },
+              ].map((opt) => (
+                <button
+                  key={opt.id}
+                  onClick={() => setQuizAnswer(opt.id)}
+                  className={`p-2.5 rounded-lg border text-left text-xs transition-all ${
+                    quizAnswer === opt.id
+                      ? opt.correct
+                        ? 'bg-emerald-950 border-emerald-500 text-emerald-300'
+                        : 'bg-red-950 border-red-500 text-red-300'
+                      : 'bg-card border-border text-muted-foreground hover:text-white'
+                  }`}
+                >
+                  {opt.text}
                 </button>
               ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Interactive Preview Canvas */}
-          <div className="glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden border border-slate-800">
-            {/* Tab 1: Generative UI Simulation */}
-            {activeTab === "genui" && (
-              <div className="space-y-6 animate-in fade-in duration-300">
-                <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-red-500/80" />
-                    <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                    <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                    <span className="text-xs font-mono text-slate-400 ml-2">streamUI() // Dynamic React Output</span>
-                  </div>
-                  <span className="text-[11px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/50">
-                    Live Component Render
-                  </span>
-                </div>
-
-                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-5">
-                  <span className="text-xs font-mono text-slate-400 uppercase tracking-wider block mb-2">
-                    Prompt: "Teach me JavaScript Event Loop with a challenge"
-                  </span>
-                  <p className="text-sm text-slate-200 mb-4 font-sans leading-relaxed">
-                    Here is an interactive challenge generated for you on the fly. Which task gets processed first?
-                  </p>
-
-                  <div className="bg-slate-950 border border-slate-800 rounded-lg p-4 font-mono text-xs text-slate-300 mb-4 space-y-1">
-                    <div className="text-purple-400">console.log("A");</div>
-                    <div className="text-cyan-400">setTimeout(() =&gt; console.log("B"), 0);</div>
-                    <div className="text-emerald-400">Promise.resolve().then(() =&gt; console.log("C"));</div>
-                    <div className="text-purple-400">console.log("D");</div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {[
-                      { id: 0, text: "1. A ➔ B ➔ C ➔ D", correct: false },
-                      { id: 1, text: "2. A ➔ D ➔ C ➔ B", correct: true },
-                      { id: 2, text: "3. A ➔ D ➔ B ➔ C", correct: false },
-                      { id: 3, text: "4. C ➔ A ➔ D ➔ B", correct: false },
-                    ].map((opt) => (
-                      <button
-                        key={opt.id}
-                        onClick={() => setQuizAnswer(opt.id)}
-                        className={`p-3 rounded-lg border text-left text-xs font-medium transition-all ${
-                          quizAnswer === opt.id
-                            ? opt.correct
-                              ? "bg-emerald-950/80 border-emerald-500 text-emerald-300"
-                              : "bg-red-950/80 border-red-500 text-red-300"
-                            : "bg-slate-900 border-slate-800 text-slate-300 hover:border-slate-700"
-                        }`}
-                      >
-                        {opt.text}
-                      </button>
-                    ))}
-                  </div>
-
-                  {quizAnswer !== null && (
-                    <div className="mt-4 p-3 rounded-lg bg-cyan-950/40 border border-cyan-800/40 text-xs text-cyan-200 animate-in fade-in">
-                      {quizAnswer === 1 ? (
-                        <p>✅ <strong>Spot on!</strong> Synchronous code runs first (A, D), then Microtasks (Promise C), then Macrotasks (setTimeout B).</p>
-                      ) : (
-                        <p>💡 <strong>Almost!</strong> Microtasks (Promises) run before Macrotasks (setTimeout). Try clicking Option 2!</p>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* Tab 2: Affective Telemetry Simulator */}
-            {activeTab === "telemetry" && (
-              <div className="space-y-6 animate-in fade-in duration-300">
-                <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
-                  <span className="text-xs font-mono text-slate-400">Behavioral Telemetry State Machine</span>
-                  <span
-                    className="text-xs font-mono px-2.5 py-0.5 rounded-full border uppercase tracking-wider font-semibold"
-                    style={{
-                      borderColor: currentTheme.primaryColor,
-                      color: currentTheme.primaryColor,
-                      backgroundColor: `${currentTheme.primaryColor}15`,
-                    }}
-                  >
-                    State: {activeMood}
-                  </span>
-                </div>
-
-                <p className="text-xs text-slate-400">
-                  Click a mood state to simulate how the entire UI and cognitive pacing morphs in real time:
-                </p>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {(["focused", "confident", "confused", "frustrated"] as MoodState[]).map((mood) => {
-                    const theme = MOOD_THEMES[mood];
-                    return (
-                      <button
-                        key={mood}
-                        onClick={() => setActiveMood(mood)}
-                        className={`p-3 rounded-xl border text-center transition-all ${
-                          activeMood === mood
-                            ? "ring-2 ring-cyan-400 font-bold text-white shadow-lg"
-                            : "bg-slate-900 border-slate-800 text-slate-400 hover:text-white"
-                        }`}
-                        style={{
-                          backgroundColor: activeMood === mood ? `${theme.primaryColor}20` : undefined,
-                          borderColor: activeMood === mood ? theme.primaryColor : undefined,
-                          boxShadow: activeMood === mood ? `0 0 20px -5px ${theme.primaryColor}50` : undefined,
-                        }}
-                      >
-                        <div className="text-xs font-mono uppercase tracking-wider">{mood}</div>
-                        <div className="text-[10px] font-sans opacity-80 mt-1" style={{ color: theme.primaryColor }}>
-                          {theme.name}
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Simulated Adaptive Container */}
-                <div
-                  className="p-5 rounded-xl border transition-all duration-500"
-                  style={{
-                    borderColor: currentTheme.primaryColor,
-                    backgroundColor: `${currentTheme.primaryColor}08`,
-                  }}
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-mono font-bold" style={{ color: currentTheme.primaryColor }}>
-                      ● Active Pacing Adaptation
-                    </span>
-                    <span className="text-[11px] font-mono text-slate-400">
-                      Telemetry: {activeMood === "frustrated" ? "Rapid Clicks (140ms)" : "Optimal Cadence (650ms)"}
-                    </span>
-                  </div>
-
-                  {activeMood === "frustrated" && (
-                    <div className="p-3 bg-purple-950/60 border border-purple-800/60 rounded-lg text-xs text-purple-200 mb-3">
-                      💜 <strong>Encouragement Active:</strong> Complex parameters collapsed into an isolated step. Animations slowed by 60%.
-                    </div>
-                  )}
-
-                  {activeMood === "confident" && (
-                    <div className="p-3 bg-emerald-950/60 border border-emerald-800/60 rounded-lg text-xs text-emerald-200 mb-3">
-                      ⚡ <strong>Challenge Level Up:</strong> Advanced edge cases and timed code challenges unlocked!
-                    </div>
-                  )}
-
-                  <p className="text-xs text-slate-300">
-                    {activeMood === "confused" && "Pacing slowed. Socratic breakdown and intermediate visual diagram rendered."}
-                    {activeMood === "focused" && "Standard high-velocity interactive mode active. Full telemetry streaming."}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* Tab 3: Ghost Peer Simulation */}
-            {activeTab === "peer" && (
-              <div className="space-y-4 animate-in fade-in duration-300">
-                <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
-                    <span className="text-xs font-mono text-slate-200 font-semibold">Pixel (Ghost Peer Agent)</span>
-                  </div>
-                  <span className="text-[11px] font-mono text-cyan-400">Sub-200ms Groq LPU Voice/Chat</span>
-                </div>
-
-                <div className="space-y-3 font-sans text-xs">
-                  <div className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 max-w-lg">
-                    <span className="text-[10px] font-mono text-indigo-400 block mb-1">👻 PIXEL</span>
-                    <p className="text-slate-200 leading-relaxed">
-                      "Hey Mayur! I was trying to fetch user data using <code className="bg-slate-950 px-1 py-0.5 rounded text-cyan-300">async/await</code> inside a <code className="bg-slate-950 px-1 py-0.5 rounded text-cyan-300">forEach</code> loop, and the whole thing ran out of order! Why didn't <code className="text-cyan-300">forEach</code> wait for my promise? Can you explain it to me?"
-                    </p>
-                  </div>
-
-                  <div className="bg-cyan-950/60 border border-cyan-800/60 rounded-xl p-3.5 max-w-lg ml-auto text-right">
-                    <span className="text-[10px] font-mono text-cyan-400 block mb-1">YOU (TEACHING PIXEL)</span>
-                    <p className="text-cyan-100 leading-relaxed">
-                      "Because <code className="bg-slate-950 px-1 py-0.5 rounded">forEach</code> does not await asynchronous callbacks! It just fires them in parallel. You should use a <code className="bg-slate-950 px-1 py-0.5 rounded">for...of</code> loop or <code className="bg-slate-950 px-1 py-0.5 rounded">Promise.all()</code> instead."
-                    </p>
-                  </div>
-
-                  <div className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 max-w-lg">
-                    <span className="text-[10px] font-mono text-indigo-400 block mb-1">👻 PIXEL</span>
-                    <p className="text-slate-200 leading-relaxed">
-                      "OH! 🤯 That makes total sense! So <code className="text-cyan-300">for...of</code> preserves execution order! Thanks for unblocking me!"
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Tab 4: 3D Knowledge Graph Teaser */}
-            {activeTab === "graph" && (
-              <div className="space-y-6 animate-in fade-in duration-300">
-                <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
-                  <span className="text-xs font-mono text-slate-400">Three.js / WebXR Spatial Knowledge Matrix</span>
-                  <span className="text-xs font-mono text-purple-400">Apple Vision Pro Ready</span>
-                </div>
-
-                <div className="h-48 bg-slate-950 border border-slate-800 rounded-xl relative flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-purple-500/10 to-transparent pointer-events-none" />
-                  
-                  {/* Visual simulated nodes */}
-                  <div className="flex items-center gap-6 z-10">
-                    <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 rounded-full bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center font-mono text-[10px] text-emerald-300 font-bold shadow-lg shadow-emerald-500/30">
-                        96%
-                      </div>
-                      <span className="text-[11px] font-mono text-slate-300 mt-1">Promises</span>
-                    </div>
-
-                    <div className="w-12 h-[2px] bg-gradient-to-r from-emerald-400 to-yellow-400 animate-pulse" />
-
-                    <div className="flex flex-col items-center">
-                      <div className="w-14 h-14 rounded-full bg-yellow-500/20 border-2 border-yellow-400 flex items-center justify-center font-mono text-xs text-yellow-300 font-bold shadow-lg shadow-yellow-500/30">
-                        65%
-                      </div>
-                      <span className="text-[11px] font-mono text-slate-300 mt-1">Event Loop</span>
-                    </div>
-
-                    <div className="w-12 h-[2px] bg-gradient-to-r from-yellow-400 to-red-400 opacity-60" />
-
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full bg-red-500/20 border-2 border-red-400 flex items-center justify-center font-mono text-[10px] text-red-300 font-bold shadow-lg shadow-red-500/30">
-                        0%
-                      </div>
-                      <span className="text-[11px] font-mono text-slate-400 mt-1">Streams</span>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-xs text-slate-400 text-center font-mono">
-                  Concept nodes positioned via physics simulation. Color indicates mastery: <span className="text-emerald-400">Mastered</span> | <span className="text-yellow-400">In Progress</span> | <span className="text-red-400">Knowledge Gap</span>
-                </p>
-              </div>
-            )}
+      {/* ─── Principles Section (from v0) ─────────────────────────── */}
+      <section id="principles" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28 border-t border-border">
+        <div className="grid gap-10 md:grid-cols-3">
+          <div className="glass-panel p-6 rounded-2xl border border-border">
+            <Check className="size-5 text-primary" />
+            <h3 className="mt-4 text-xl font-bold tracking-tight text-white">Quiet by default</h3>
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">
+              A considered interface that removes decorative noise to make room for deep cognitive focus.
+            </p>
           </div>
-        </section>
+          <div className="glass-panel p-6 rounded-2xl border border-border">
+            <Check className="size-5 text-primary" />
+            <h3 className="mt-4 text-xl font-bold tracking-tight text-white">Context, connected</h3>
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">
+              Your memory embeddings, past mistakes, and 3D concept constellations stay synced via pgvector.
+            </p>
+          </div>
+          <div className="glass-panel p-6 rounded-2xl border border-border">
+            <Check className="size-5 text-primary" />
+            <h3 className="mt-4 text-xl font-bold tracking-tight text-white">Built for trust</h3>
+            <p className="mt-2.5 text-sm leading-6 text-muted-foreground">
+              Self-healing schema evals ensure 100% deterministic UI rendering without runtime crashes.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        {/* ─── Creator Signature Section ──────────────────────────────── */}
-        <section id="creator" className="w-full max-w-4xl border-t border-slate-800/80 pt-16 pb-12 flex flex-col items-center text-center">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-indigo-500 p-[1px] mb-4 shadow-lg shadow-cyan-500/20">
-            <div className="w-full h-full bg-slate-950 rounded-[15px] flex items-center justify-center font-bold text-white text-base">
-              MS
+      {/* ─── Creator & Architect Footer ───────────────────────────── */}
+      <footer id="creator" className="mx-auto max-w-7xl px-6 py-16 lg:px-10 border-t border-border">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between mb-10">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="size-7 place-items-center rounded-md bg-primary grid text-slate-950 font-bold text-xs">
+                MS
+              </span>
+              <span className="font-bold text-white text-lg">{APP_AUTHOR}</span>
+              <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">
+                Lead Architect & Creator
+              </span>
             </div>
+            <p className="text-2xl font-bold tracking-[-0.03em] text-white max-w-xl">
+              "By 2030, static applications will be obsolete. Computing will be powered by living, generative interfaces."
+            </p>
+            <p className="mt-2 text-xs text-muted-foreground font-mono">
+              MayuronOS (मयूर + Neuron) • Next.js 15 • Vercel AI SDK • Supabase • Three.js
+            </p>
           </div>
 
-          <h3 className="text-xl font-bold text-white tracking-tight">{APP_AUTHOR}</h3>
-          <p className="text-xs font-mono text-cyan-400 mb-4">Lead Architect & Creator</p>
-
-          <p className="text-sm text-slate-400 max-w-xl leading-relaxed italic mb-6">
-            "By 2030, static applications will be obsolete. Computing will be powered by living,
-            generative interfaces that perceive human cognition and morph in real-time.
-            {APP_NAME} is the architectural blueprint for that future."
-          </p>
-
-          <div className="flex items-center gap-4 text-xs font-mono text-slate-500">
-            <span>© 2026 {APP_AUTHOR}</span>
-            <span>•</span>
-            <span>MIT License</span>
-            <span>•</span>
-            <span>Next.js 15 App Router</span>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/learn"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-xs font-semibold text-primary-foreground transition-all hover:bg-cyan-300 active:scale-95"
+            >
+              <span>Launch Studio</span>
+              <ArrowUpRight className="size-3.5" />
+            </Link>
           </div>
-        </section>
-      </main>
-    </div>
-  );
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center justify-between border-t border-border pt-6 text-xs text-muted-foreground font-mono">
+          <span>© 2026 {APP_AUTHOR} (MSACE). MIT License.</span>
+          <span className="mt-2 sm:mt-0 text-primary">Live on GitHub: MSACE/MayuronOS</span>
+        </div>
+      </footer>
+    </main>
+  )
 }
