@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -27,31 +27,24 @@
 
 :root {
   color-scheme: dark;
-  --background: #030712;
-  --foreground: #f8fafc;
-  --card: rgba(15, 23, 42, 0.72);
-  --card-foreground: #f8fafc;
-  --popover: #0b1220;
-  --popover-foreground: #f8fafc;
-  --primary: #00c3ff;
-  --primary-foreground: #030712;
-  --secondary: rgba(15, 23, 42, 0.68);
-  --secondary-foreground: #e2e8f0;
-  --muted: rgba(30, 41, 59, 0.58);
-  --muted-foreground: #94a3b8;
-  --accent: rgba(0, 195, 255, 0.12);
-  --accent-foreground: #00c3ff;
-  --destructive: #ff7300;
-  --border: rgba(148, 163, 184, 0.18);
-  --input: rgba(148, 163, 184, 0.22);
-  --ring: #00c3ff;
-  
-  /* Supercar Chromatic Design Tokens */
-  --chromatic-blue: #00c3ff;    /* Lambo Blu Cepheus / Porsche Miami Blue */
-  --chromatic-green: #49f112;   /* Lambo Verde Mantis / McLaren Kyalami */
-  --chromatic-violet: #a855f7;  /* Lambo Viola Pasifae / Porsche Ruby */
-  --chromatic-yellow: #ffe600;  /* Ferrari Giallo Modena / Lambo Inti */
-  --chromatic-orange: #ff7300;  /* McLaren Papaya Spark */
+  --background: #0f1013;
+  --foreground: #f4f4f5;
+  --card: #15171c;
+  --card-foreground: #f4f4f5;
+  --popover: #15171c;
+  --popover-foreground: #f4f4f5;
+  --primary: #ffffff;
+  --primary-foreground: #0f1013;
+  --secondary: #1a1c22;
+  --secondary-foreground: #f4f4f5;
+  --muted: #242731;
+  --muted-foreground: #8e94a4;
+  --accent: #242731;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #ffffff;
 }
 
 body {
@@ -59,42 +52,10 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
-  selection-background-color: #00c3ff;
-  selection-color: #030712;
-}
-
-/* Silicon Valley Ambient Grid & Glassmorphism */
-.bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
 .glass-panel {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.45));
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-}
-
-.chromatic-rule {
-  background: linear-gradient(90deg, var(--chromatic-blue), var(--chromatic-violet), var(--chromatic-orange));
-}
-
-/* Custom subtle scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #030712;
-}
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: linear-gradient(145deg, #13151b, #0f1014);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
