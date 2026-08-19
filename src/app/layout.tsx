@@ -15,7 +15,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "MayuronOS — Neural & Generative Learning Matrix",
   description:
-    "An AI-powered cognitive operating system that generates interactive UI in real-time based on how you learn and feel.",
+    "An AI-powered cognitive operating system that generates interactive UI in real-time based on how you learn and feel. Architected & Designed by Mayur Saini.",
+  authors: [{ name: "Mayur Saini" }],
+  creator: "Mayur Saini",
+  publisher: "Mayur Saini",
+  keywords: [
+    "MayuronOS",
+    "Mayur Saini",
+    "Generative UI",
+    "Adaptive Learning",
+    "AI Agents",
+    "Vercel AI SDK",
+    "Next.js 15",
+    "pgvector",
+  ],
 };
 
 export default function RootLayout({

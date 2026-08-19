@@ -81,10 +81,17 @@ src/
 └── types/                  # TypeScript type definitions
 ```
 
+## 👨‍💻 Creator & Architect
+
+**Mayur Saini**  
+*Full-Stack & AI Systems Engineer*
+
+> *"By 2030, static applications will be obsolete. Computing will be powered by living, generative interfaces that perceive human cognition and morph in real-time. MayuronOS is my architectural blueprint for that future."* — **Mayur Saini**
+
+---
+
 ## 📄 License
 
-MIT License — see [LICENSE](./LICENSE) for details.
+Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
 
-## 🙏 Acknowledgments
-
-Built while learning real-world AI engineering. Inspired by the shift from LeetCode to practical, project-based hiring in tech.
+Copyright © 2026 **Mayur Saini**. All rights reserved.

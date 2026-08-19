@@ -14,8 +14,10 @@
 
 export const APP_NAME = "MayuronOS";
 export const APP_TAGLINE = "Neural & Generative Learning Matrix";
+export const APP_AUTHOR = "Mayur Saini";
+export const APP_VERSION = "0.1.0";
 export const APP_DESCRIPTION =
-  "A Sanskrit-inspired, AI-powered cognitive operating system that generates interactive UI in real-time based on how you learn and feel.";
+  "A Sanskrit-inspired, AI-powered cognitive operating system created and architected by Mayur Saini. It generates interactive UI in real-time based on how you learn and feel.";
 
 // ─── AI Model Config ───────────────────────────────────
 

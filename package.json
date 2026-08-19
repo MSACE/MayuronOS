@@ -1,6 +1,9 @@
 {
   "name": "mayuron-os",
   "version": "0.1.0",
+  "description": "Neural & Generative Learning Matrix — Created & Architected by Mayur Saini",
+  "author": "Mayur Saini",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
