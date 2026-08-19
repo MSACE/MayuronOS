@@ -67,33 +67,38 @@ export const MOOD_THRESHOLDS = {
   highBacktrackCount: 5,
 } as const;
 
-// ─── Theme Colors by Mood ──────────────────────────────
+// ─── Theme Colors by Mood (Supercar Chromatic Spec) ────
 
 export const MOOD_THEMES = {
   focused: {
-    primaryColor: "#3b82f6",     // blue — calm and productive
-    backgroundColor: "#f8fafc",
-    accentColor: "#2563eb",
+    name: "Blu Cepheus (Lamborghini)",
+    primaryColor: "#00C3FF",     // Electric Cyan (Lambo Blu Cepheus / Porsche Miami Blue)
+    backgroundColor: "#030712",
+    accentColor: "#0088FF",
   },
   confident: {
-    primaryColor: "#10b981",     // green — positive and energetic
-    backgroundColor: "#f0fdf4",
-    accentColor: "#059669",
+    name: "Verde Mantis (Lamborghini)",
+    primaryColor: "#49F112",     // Hyper Lime Green (Lambo Verde Mantis / McLaren Kyalami)
+    backgroundColor: "#030712",
+    accentColor: "#38C90A",
   },
   confused: {
-    primaryColor: "#f59e0b",     // amber — warm and supportive
-    backgroundColor: "#fffbeb",
-    accentColor: "#d97706",
+    name: "Giallo Modena (Ferrari)",
+    primaryColor: "#FFE600",     // Solar Electric Yellow (Ferrari Giallo Modena / Lambo Inti)
+    backgroundColor: "#030712",
+    accentColor: "#FFB700",
   },
   frustrated: {
-    primaryColor: "#8b5cf6",     // purple — calming
-    backgroundColor: "#faf5ff",
-    accentColor: "#7c3aed",
+    name: "Viola Pasifae (Lamborghini)",
+    primaryColor: "#A855F7",     // Royal Metallic Violet (Lambo Viola Pasifae / Porsche Ruby)
+    backgroundColor: "#030712",
+    accentColor: "#7C3AED",
   },
   neutral: {
-    primaryColor: "#6366f1",     // indigo — balanced
-    backgroundColor: "#ffffff",
-    accentColor: "#4f46e5",
+    name: "Papaya Spark (McLaren)",
+    primaryColor: "#FF7300",     // McLaren Papaya Spark Racing Orange
+    backgroundColor: "#030712",
+    accentColor: "#E65100",
   },
 } as const;
 

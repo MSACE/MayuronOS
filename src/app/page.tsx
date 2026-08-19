@@ -239,23 +239,30 @@ export default function LandingPage() {
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {(["focused", "confident", "confused", "frustrated"] as MoodState[]).map((mood) => (
-                    <button
-                      key={mood}
-                      onClick={() => setActiveMood(mood)}
-                      className={`p-3 rounded-xl border text-center text-xs font-mono uppercase tracking-wider transition-all ${
-                        activeMood === mood
-                          ? "ring-2 ring-cyan-400 font-bold text-white"
-                          : "bg-slate-900 border-slate-800 text-slate-400 hover:text-white"
-                      }`}
-                      style={{
-                        backgroundColor: activeMood === mood ? `${MOOD_THEMES[mood].primaryColor}20` : undefined,
-                        borderColor: activeMood === mood ? MOOD_THEMES[mood].primaryColor : undefined,
-                      }}
-                    >
-                      {mood}
-                    </button>
-                  ))}
+                  {(["focused", "confident", "confused", "frustrated"] as MoodState[]).map((mood) => {
+                    const theme = MOOD_THEMES[mood];
+                    return (
+                      <button
+                        key={mood}
+                        onClick={() => setActiveMood(mood)}
+                        className={`p-3 rounded-xl border text-center transition-all ${
+                          activeMood === mood
+                            ? "ring-2 ring-cyan-400 font-bold text-white shadow-lg"
+                            : "bg-slate-900 border-slate-800 text-slate-400 hover:text-white"
+                        }`}
+                        style={{
+                          backgroundColor: activeMood === mood ? `${theme.primaryColor}20` : undefined,
+                          borderColor: activeMood === mood ? theme.primaryColor : undefined,
+                          boxShadow: activeMood === mood ? `0 0 20px -5px ${theme.primaryColor}50` : undefined,
+                        }}
+                      >
+                        <div className="text-xs font-mono uppercase tracking-wider">{mood}</div>
+                        <div className="text-[10px] font-sans opacity-80 mt-1" style={{ color: theme.primaryColor }}>
+                          {theme.name}
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
 
                 {/* Simulated Adaptive Container */}
