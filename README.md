@@ -38,8 +38,8 @@
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/adaptive-os.git
-cd adaptive-os
+git clone https://github.com/MSACE/mayuron-os.git
+cd mayuron-os
 
 # Install dependencies
 npm install
