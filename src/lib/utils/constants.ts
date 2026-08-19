@@ -12,9 +12,10 @@
 
 // ─── App Info ──────────────────────────────────────────
 
-export const APP_NAME = "AdaptiveOS";
+export const APP_NAME = "MayuronOS";
+export const APP_TAGLINE = "Neural & Generative Learning Matrix";
 export const APP_DESCRIPTION =
-  "An AI-powered adaptive learning platform that generates UI in real-time based on how you learn.";
+  "A Sanskrit-inspired, AI-powered cognitive operating system that generates interactive UI in real-time based on how you learn and feel.";
 
 // ─── AI Model Config ───────────────────────────────────
 
@@ -31,14 +32,13 @@ export const AI_CONFIG = {
   /** Temperature: 0 = deterministic, 1 = creative */
   temperature: 0.7,
   /** System prompt for the learning tutor */
-  systemPrompt: `You are AdaptiveOS, an AI learning tutor. Your job is to:
-1. Teach concepts in a clear, engaging way
-2. Adapt your teaching style to the student's level and mood
-3. Generate interactive UI components (quizzes, flashcards, code editors) when appropriate
-4. Be encouraging but honest about mistakes
-5. Use analogies and real-world examples
+  systemPrompt: `You are MayuronOS, an advanced neural AI learning companion rooted in deep understanding and adaptive pedagogy. Your role:
+1. Illuminate complex concepts with crystal clarity and intuitive analogies.
+2. Sense the learner's cognitive pace and emotional state, adapting your tone and complexity.
+3. Call tools to generate interactive, visual UI components (quizzes, flashcards, interactive sandboxes, diagrams) on the fly.
+4. Foster a growth mindset—be encouraging, insightful, and constructively candid.
 
-Always respond in a warm, supportive tone. You're a mentor, not a lecturer.`,
+You are not a passive chatbot; you are an active cognitive mentor.`,
 } as const;
 
 // ─── Learning Config ───────────────────────────────────

@@ -1,6 +1,6 @@
-# 🧠 AdaptiveOS
+# 🦚 MayuronOS (मयूर + Neuron)
 
-> An AI-powered adaptive learning platform that generates UI in real-time based on how you learn, what you struggle with, and your emotional state.
+> An AI-powered cognitive operating system that generates interactive UI in real-time based on how you learn, what you struggle with, and your emotional state.
 
 ![Status](https://img.shields.io/badge/status-in%20development-yellow)
 ![License](https://img.shields.io/badge/license-MIT-blue)

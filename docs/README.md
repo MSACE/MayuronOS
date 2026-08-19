@@ -1,6 +1,6 @@
-# 📖 AdaptiveOS — Study Guide Index
+# 📖 MayuronOS — Study Guide Index
 
-> Your complete reference library. Each session doc covers concepts, code patterns, and features.
+> Your complete reference library for the MayuronOS build journey. Each session doc covers concepts, code patterns, and features.
 
 ---
 
