@@ -27,31 +27,30 @@
 
 :root {
   color-scheme: dark;
-  --background: #08090c;
-  --foreground: #f4f4f5;
-  --card: #111318;
-  --card-foreground: #f4f4f5;
-  --popover: #111318;
-  --popover-foreground: #f4f4f5;
+  --background: #090a0c;
+  --foreground: #f4f4f6;
+  --card: #121316;
+  --card-foreground: #f4f4f6;
+  --popover: #121316;
+  --popover-foreground: #f4f4f6;
   --primary: #ffffff;
-  --primary-foreground: #08090c;
-  --secondary: #14161d;
-  --secondary-foreground: #f4f4f5;
-  --muted: #1e222d;
-  --muted-foreground: #8e95a5;
-  --accent: #1e222d;
+  --primary-foreground: #090a0c;
+  --secondary: #14161a;
+  --secondary-foreground: #f4f4f6;
+  --muted: #1e2026;
+  --muted-foreground: #8a8f98;
+  --accent: #1e2026;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
-  --border: rgba(255, 255, 255, 0.09);
+  --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.12);
-  --ring: #00c3ff;
+  --ring: #ffffff;
+}
 
-  /* Supercar Chromatic Design Tokens */
-  --lambo-cyan: #00c3ff;     /* Blu Cepheus / Porsche Miami Blue */
-  --lambo-lime: #49f112;     /* Verde Mantis */
-  --lambo-violet: #a855f7;   /* Viola Pasifae */
-  --ferrari-yellow: #ffe600; /* Giallo Modena */
-  --mclaren-orange: #ff7300; /* Papaya Spark */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -61,24 +60,8 @@ body {
   overflow-x: hidden;
 }
 
-/* Supercar Ambient Glows */
-.supercar-glow-cyan {
-  box-shadow: 0 0 35px -8px rgba(0, 195, 255, 0.25);
-}
-
-.supercar-glow-lime {
-  box-shadow: 0 0 35px -8px rgba(73, 241, 18, 0.25);
-}
-
-.supercar-glow-violet {
-  box-shadow: 0 0 35px -8px rgba(168, 85, 247, 0.25);
-}
-
-/* Glassmorphism Panel with Supercar Horizon Lighting */
 .glass-panel {
-  background: linear-gradient(145deg, rgba(17, 21, 30, 0.85), rgba(11, 13, 18, 0.95));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: linear-gradient(145deg, rgba(20, 22, 27, 0.85), rgba(14, 15, 18, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 100px -20px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
