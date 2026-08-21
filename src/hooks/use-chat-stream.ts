@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import { GenerativePayload } from "@/components/generative/registry";
 
 export interface Message {
   id: string;
   role: "user" | "assistant" | "system";
   content: string;
+  generativePayload?: GenerativePayload | null;
   createdAt?: Date;
 }
 
@@ -52,13 +54,14 @@ export function useChatStream({
       setIsLoading(true);
 
       const assistantMsgId = `asst-${Date.now()}`;
-      // Add empty assistant message placeholder for streaming tokens into
+      // Add empty assistant message placeholder
       setMessages((prev) => [
         ...prev,
         {
           id: assistantMsgId,
           role: "assistant",
           content: "",
+          generativePayload: null,
           createdAt: new Date(),
         },
       ]);
@@ -92,37 +95,44 @@ export function useChatStream({
 
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
-        let assistantText = "";
+        let rawAccumulatedText = "";
 
         while (true) {
           const { done, value } = await reader.read();
           if (done) break;
 
           const chunk = decoder.decode(value, { stream: true });
-          
-          // Parse Vercel AI Data Stream protocol (0:"text\n") or raw chunks
-          const lines = chunk.split("\n");
-          for (const line of lines) {
-            if (line.startsWith("0:")) {
-              try {
-                const text = JSON.parse(line.slice(2));
-                assistantText += text;
-              } catch {
-                assistantText += line.slice(2);
-              }
-            } else if (line.startsWith("d:") || line.startsWith("e:")) {
-              // Metadata / finish events
-              continue;
-            } else if (line) {
-              assistantText += line;
+          rawAccumulatedText += chunk;
+
+          // Check if Generative UI payload marker exists
+          let displayContent = rawAccumulatedText;
+          let parsedPayload: GenerativePayload | null = null;
+
+          const payloadStart = rawAccumulatedText.indexOf("__GEN_UI_PAYLOAD__");
+          const payloadEnd = rawAccumulatedText.indexOf("__END_PAYLOAD__");
+
+          if (payloadStart !== -1 && payloadEnd !== -1) {
+            displayContent = rawAccumulatedText.substring(0, payloadStart).trim();
+            const jsonString = rawAccumulatedText.substring(
+              payloadStart + 18,
+              payloadEnd
+            );
+            try {
+              parsedPayload = JSON.parse(jsonString);
+            } catch (err) {
+              console.error("[Payload Parse Error]:", err);
             }
           }
 
-          // Update assistant message with current token accumulation
+          // Update assistant message with current text & generative component
           setMessages((prev) =>
             prev.map((msg) =>
               msg.id === assistantMsgId
-                ? { ...msg, content: assistantText }
+                ? {
+                    ...msg,
+                    content: displayContent,
+                    generativePayload: parsedPayload,
+                  }
                 : msg
             )
           );
@@ -163,6 +173,7 @@ export function useChatStream({
 
   return {
     messages,
+    setMessages,
     input,
     setInput,
     handleInputChange,
